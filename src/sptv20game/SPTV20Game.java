@@ -20,16 +20,24 @@ public class SPTV20Game {
     public static void main(String[] args) {
         // программа загадывает число, пользователь отгадывает
         System.out.println("программа загадала число в диапазоне от 0 до 5. угадай: ");
-        int max = 5, min = 0;
+        int max = 5, min = 0, attempt = 1;
+        Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int gameNum = random.nextInt(max - min + 1) + min;
-        Scanner scanner = new Scanner(System.in);
-        int userNum = scanner.nextInt();
-        if(gameNum == userNum) {
-            System.out.println("ты выиграл");
-        }else {
-            System.out.println("тебя заскамили. задумано было: "  + gameNum);
-        } 
+        for(int i=0; i<3; i++) {
+            int userNum = scanner.nextInt();
+            if(gameNum == userNum) {
+                System.out.println("ты выиграл");
+                break;
+            }else {
+                if(attempt < 3) {
+                    System.out.println("пробуй еще раз, бездарь");
+                }else{
+                    System.out.println("тебя заскамили. задумано было: "  + gameNum);
+                }
+            }
+            attempt++;
+         } 
     }
     
 }
